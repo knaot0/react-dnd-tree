@@ -6,7 +6,7 @@ type TreeSpacerProps = {
   parentNode: TreeView.Node;
 };
 
-export const TreeSpacer: React.VFC<TreeSpacerProps> = ({
+export const TreeSpacer: React.FC<TreeSpacerProps> = ({
   index,
   parentNode,
 }) => {

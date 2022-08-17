@@ -1,4 +1,3 @@
-import ReactJson from "react-json-view";
 import { useEffect } from "react";
 import { TreeItem } from "./TreeItem";
 import { TreeSpacer } from "./TreeSpacer";
@@ -8,13 +7,9 @@ import { TreeViewDispatchContext } from "../contexts/TreeViewDispatchContext";
 
 type TreeViewProps = {
   initialNode: TreeView.Node;
-  testMode?: boolean;
 };
 
-export const TreeView: React.VFC<TreeViewProps> = ({
-  initialNode,
-  testMode = false,
-}) => {
+export const TreeView: React.FC<TreeViewProps> = ({ initialNode }) => {
   const [state, dispatch] = useTreeViewReducer(initialNode);
 
   useEffect(() => {
@@ -41,12 +36,6 @@ export const TreeView: React.VFC<TreeViewProps> = ({
           </TreeViewStateContext.Provider>
         </TreeViewDispatchContext.Provider>
       </div>
-
-      {testMode && (
-        <div>
-          <ReactJson src={state} />
-        </div>
-      )}
     </>
   );
 };

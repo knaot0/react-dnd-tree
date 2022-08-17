@@ -6,7 +6,7 @@ type TreeNodeProps = {
   parentNode: TreeView.Node;
 };
 
-export const TreeNode: React.VFC<TreeNodeProps> = ({ node, parentNode }) => {
+export const TreeNode: React.FC<TreeNodeProps> = ({ node, parentNode }) => {
   const dispatch = useTreeViewDispatchContext();
   const [isDragOver, setIsDragOver] = useState(false);
 

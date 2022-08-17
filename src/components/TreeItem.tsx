@@ -9,7 +9,7 @@ type TreeItemProps = {
   parentNode: TreeView.Node;
 };
 
-export const TreeItem: React.VFC<TreeItemProps> = ({
+export const TreeItem: React.FC<TreeItemProps> = ({
   depth = 0,
   node,
   index,

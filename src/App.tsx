@@ -83,7 +83,7 @@ const node: TreeView.Node = {
 };
 
 function App() {
-  return <TreeView testMode initialNode={node} />;
+  return <TreeView initialNode={node} />;
 }
 
 export default App;

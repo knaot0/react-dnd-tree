@@ -9,7 +9,7 @@ type TreeBranchProps = {
   parentNode: TreeView.Node;
 };
 
-export const TreeBranch: React.VFC<TreeBranchProps> = ({
+export const TreeBranch: React.FC<TreeBranchProps> = ({
   node,
   depth,
   parentNode,
