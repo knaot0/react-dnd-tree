@@ -10,6 +10,12 @@
   "types": "./types/components/index.d.ts",
   "main": "./dist/my-lib.umd.js",
   "module": "./dist/my-lib.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/my-lib.es.js",
+      "require": "./dist/my-lib.umd.js"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -p ./tsconfig.build.json && vite build",
