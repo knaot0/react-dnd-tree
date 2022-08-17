@@ -5,7 +5,7 @@ import { useTreeViewReducer } from "../hooks/useTreeViewReducer";
 import { TreeViewStateContext } from "../contexts/TreeViewStateContext";
 import { TreeViewDispatchContext } from "../contexts/TreeViewDispatchContext";
 
-type TreeViewProps = {
+export type TreeViewProps = {
   initialNode: TreeView.Node;
 };
 
