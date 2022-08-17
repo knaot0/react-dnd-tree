@@ -1,12 +1,13 @@
+import type * as Types from "../reducers/TreeView/types";
 import { useState } from "react";
 import { useTreeViewDispatchContext } from "../hooks/useTreeViewDispatchContext";
 import { TreeItem } from "./TreeItem";
 import { TreeSpacer } from "./TreeSpacer";
 
 type TreeBranchProps = {
-  node: TreeView.Node;
+  node: Types.TreeNode;
   depth: number;
-  parentNode: TreeView.Node;
+  parentNode: Types.TreeNode;
 };
 
 export const TreeBranch: React.FC<TreeBranchProps> = ({

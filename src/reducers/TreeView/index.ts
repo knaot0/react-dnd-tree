@@ -1,13 +1,14 @@
+import type * as Types from "./types";
 import type { Reducer } from "react";
 import { dragStart } from "./dragStart";
 import { dragEnd } from "./dragEnd";
 import { dropToNode } from "./dropToNode";
 import { dropToSpacer } from "./dropToSpacer";
 
-export const treeViewReducer: Reducer<TreeView.State, TreeView.Actions> = (
+export const treeViewReducer: Reducer<Types.State, Types.Actions> = (
   prevState,
   action
-): TreeView.State => {
+): Types.State => {
   console.debug("action", action);
 
   switch (action.type) {

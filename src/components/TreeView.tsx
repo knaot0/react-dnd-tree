@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import type * as Types from "../reducers/TreeView/types";
 import { TreeItem } from "./TreeItem";
 import { TreeSpacer } from "./TreeSpacer";
 import { useTreeViewReducer } from "../hooks/useTreeViewReducer";
@@ -6,7 +6,7 @@ import { TreeViewStateContext } from "../contexts/TreeViewStateContext";
 import { TreeViewDispatchContext } from "../contexts/TreeViewDispatchContext";
 
 export type TreeViewProps = {
-  initialNode: TreeView.Node;
+  initialNode: Types.TreeNode;
 };
 
 export const TreeView: React.FC<TreeViewProps> = ({ initialNode }) => {

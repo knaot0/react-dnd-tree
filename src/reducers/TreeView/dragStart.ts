@@ -1,7 +1,9 @@
+import type * as Types from "./types";
+
 export function dragStart(
-  prevState: TreeView.State,
-  payload: TreeView.Action.DragStart["payload"]
-): TreeView.State {
+  prevState: Types.State,
+  payload: Types.Action.DragStart["payload"]
+): Types.State {
   return {
     ...prevState,
     sourceNode: payload.sourceNode,

@@ -1,9 +1,10 @@
+import type * as Types from "../reducers/TreeView/types";
 import { useState } from "react";
 import { useTreeViewDispatchContext } from "../hooks/useTreeViewDispatchContext";
 
 type TreeSpacerProps = {
   index: number;
-  parentNode: TreeView.Node;
+  parentNode: Types.TreeNode;
 };
 
 export const TreeSpacer: React.FC<TreeSpacerProps> = ({

@@ -1,3 +1,5 @@
-export function dragEnd(prevState: TreeView.State): TreeView.State {
+import type * as Types from "./types";
+
+export function dragEnd(prevState: Types.State): Types.State {
   return { ...prevState, sourceNode: null, sourceParentNode: null };
 }

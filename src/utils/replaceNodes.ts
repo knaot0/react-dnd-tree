@@ -1,3 +1,4 @@
+import type * as Types from "../reducers/TreeView/types";
 import { replaceArrayElements } from "./replaceArrayElements";
 
 type ReplaceNodesArgs = {
@@ -11,7 +12,7 @@ type ReplaceNodesArgs = {
  */
 export const replaceNodes =
   ({ parentNodeId, sourceIndex, targetIndex }: ReplaceNodesArgs) =>
-  (node: TreeView.Node): TreeView.Node => {
+  (node: Types.TreeNode): Types.TreeNode => {
     const newChildren = node.children.map(
       replaceNodes({ parentNodeId, sourceIndex, targetIndex })
     );

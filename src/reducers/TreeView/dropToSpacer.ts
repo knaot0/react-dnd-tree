@@ -1,12 +1,13 @@
+import type * as Types from "./types";
 import { pipe } from "ramda";
 import { insertNode } from "../../utils/insertNode";
 import { removeNode } from "../../utils/removeNode";
 import { replaceNodes } from "../../utils/replaceNodes";
 
 export const dropToSpacer = (
-  prevState: TreeView.State,
-  payload: TreeView.Action.DropToSpacer["payload"]
-): TreeView.State => {
+  prevState: Types.State,
+  payload: Types.Action.DropToSpacer["payload"]
+): Types.State => {
   if (!prevState.sourceParentNode || !prevState.sourceNode) return prevState;
 
   const { sourceNode, sourceParentNode } = prevState;

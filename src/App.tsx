@@ -1,6 +1,7 @@
+import type * as Types from "./reducers/TreeView/types";
 import { TreeView } from "./components/TreeView";
 
-const node: TreeView.Node = {
+const node: Types.TreeNode = {
   id: 0,
   name: "商材種別",
   children: [

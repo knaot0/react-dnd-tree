@@ -1,8 +1,9 @@
+import type * as Types from "../reducers/TreeView/types";
 import { insert } from "./insert";
 
 type InsertNodeArgs = {
   parentNodeId: React.Key;
-  sourceNode: TreeView.Node;
+  sourceNode: Types.TreeNode;
   targetIndex: number;
 };
 
@@ -11,7 +12,7 @@ type InsertNodeArgs = {
  */
 export const insertNode =
   ({ parentNodeId, sourceNode, targetIndex }: InsertNodeArgs) =>
-  (node: TreeView.Node): TreeView.Node => {
+  (node: Types.TreeNode): Types.TreeNode => {
     const newChildren = node.children.map(
       insertNode({ parentNodeId, sourceNode, targetIndex })
     );

@@ -1,3 +1,4 @@
+import type * as Types from "../reducers/TreeView/types";
 import { TreeBranch } from "./TreeBranch";
 import { TreeNode } from "./TreeNode";
 import { TreeSpacer } from "./TreeSpacer";
@@ -5,8 +6,8 @@ import { TreeSpacer } from "./TreeSpacer";
 type TreeItemProps = {
   index: number;
   depth?: number;
-  node: TreeView.Node;
-  parentNode: TreeView.Node;
+  node: Types.TreeNode;
+  parentNode: Types.TreeNode;
 };
 
 export const TreeItem: React.FC<TreeItemProps> = ({

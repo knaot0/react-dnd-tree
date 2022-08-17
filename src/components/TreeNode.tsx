@@ -1,9 +1,10 @@
+import type * as Types from "../reducers/TreeView/types";
 import { useState } from "react";
 import { useTreeViewDispatchContext } from "../hooks/useTreeViewDispatchContext";
 
 type TreeNodeProps = {
-  node: TreeView.Node;
-  parentNode: TreeView.Node;
+  node: Types.TreeNode;
+  parentNode: Types.TreeNode;
 };
 
 export const TreeNode: React.FC<TreeNodeProps> = ({ node, parentNode }) => {

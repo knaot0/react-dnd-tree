@@ -1,9 +1,11 @@
+import type * as Types from "../reducers/TreeView/types";
+
 /**
  * ターゲット配下にノードを追加
  */
 export const appendNode =
-  (parentNodeId: React.Key, newNode: TreeView.Node) =>
-  (node: TreeView.Node): TreeView.Node => {
+  (parentNodeId: React.Key, newNode: Types.TreeNode) =>
+  (node: Types.TreeNode): Types.TreeNode => {
     const newChildren = node.children.map(appendNode(parentNodeId, newNode));
 
     return {
