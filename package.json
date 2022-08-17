@@ -9,6 +9,7 @@
   ],
   "types": "./types/components/index.d.ts",
   "main": "./dist/my-lib.umd.js",
+  "module": "./dist/my-lib.es.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc -p ./tsconfig.build.json && vite build",
