@@ -9,7 +9,7 @@ specifiers:
   ramda: ^0.28.0
   react: ^18.2.0
   react-dom: ^18.2.0
-  shipjs: ^0.24.4
+  shipjs: 0.24.4
   typescript: ^4.6.4
   vite: ^3.0.7
 
@@ -2162,7 +2162,7 @@ packages:
   /randombytes/2.1.0:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
     dependencies:
-      safe-buffer: 5.1.2
+      safe-buffer: 5.2.1
     dev: true
 
   /react-dom/18.2.0_react@18.2.0:
