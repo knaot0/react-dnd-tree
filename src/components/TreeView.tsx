@@ -12,10 +12,6 @@ export type TreeViewProps = {
 export const TreeView: React.FC<TreeViewProps> = ({ initialNode }) => {
   const [state, dispatch] = useTreeViewReducer(initialNode);
 
-  useEffect(() => {
-    console.debug(state);
-  }, [state]);
-
   return (
     <>
       <div style={{ padding: 20, fontSize: 20 }}>
