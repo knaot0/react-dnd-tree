@@ -5,14 +5,6 @@ namespace TreeView {
     children: Node[];
   };
 
-  type FlatNode = {
-    id: React.Key;
-    name: string;
-    depth: number;
-    parentId: React.Key | null;
-    hasChildren: boolean;
-  };
-
   type State = {
     node: Node;
     sourceNode: Node | null;
