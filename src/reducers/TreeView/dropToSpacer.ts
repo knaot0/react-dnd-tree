@@ -1,10 +1,13 @@
+import { pipe } from "ramda";
+import { insertNode } from "../../utils/insertNode";
+import { removeNode } from "../../utils/removeNode";
 import { replaceNodes } from "../../utils/replaceNodes";
 
 export const dropToSpacer = (
   prevState: TreeView.State,
   payload: TreeView.Action.DropToSpacer["payload"]
 ): TreeView.State => {
-  if (!isNonNullableState(prevState)) return prevState;
+  if (!prevState.sourceParentNode || !prevState.sourceNode) return prevState;
 
   const { sourceNode, sourceParentNode } = prevState;
   const { targetIndex, targetParentNode } = payload;
@@ -19,42 +22,22 @@ export const dropToSpacer = (
       ...prevState,
       node: replaceNodes({
         parentNodeId: targetParentNode.id,
-        sourceIndex: sourceIndex,
+        sourceIndex,
         targetIndex,
       })(prevState.node),
     };
   }
 
   // MARK: 親ノードが異なる場合
-  return insertNode(prevState, payload);
+  return {
+    ...prevState,
+    node: pipe(
+      removeNode(sourceNode.id),
+      insertNode({
+        parentNodeId: targetParentNode.id,
+        sourceNode,
+        targetIndex,
+      })
+    )(prevState.node),
+  };
 };
-
-/**
- * ステートのNullガード
- */
-function isNonNullableState(
-  state: TreeView.State
-): state is NonNullableObj<TreeView.State> {
-  return Object.values(state).every(Boolean);
-}
-
-/**
- * ブランチにノードを追加
- */
-function insertNode(
-  prevState: NonNullableObj<TreeView.State>,
-  payload: TreeView.Action.DropToSpacer["payload"]
-): TreeView.State {
-  const { sourceNode, sourceParentNode } = prevState;
-  const { targetIndex, targetParentNode } = payload;
-
-  // NOTE: ターゲット配下の特定のインデックスにノードを追加
-  targetParentNode.children.splice(targetIndex, 0, sourceNode);
-
-  // NOTE: ドラッグ中のノードを切り離す
-  sourceParentNode.children = sourceParentNode.children.filter(
-    (x) => x.id !== sourceNode.id
-  );
-
-  return { ...prevState };
-}
