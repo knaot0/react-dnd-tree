@@ -1,9 +1,11 @@
 import { pipe } from "ramda";
+import { appendNode } from "../../utils/appendNode";
+import { removeNode } from "../../utils/removeNode";
 
-export function dropToNode(
+export const dropToNode = (
   prevState: TreeView.State,
   payload: TreeView.Action.DropToNode["payload"]
-): TreeView.State {
+): TreeView.State => {
   const { sourceNode, sourceParentNode } = prevState;
   if (!sourceNode || !sourceParentNode) return prevState;
 
@@ -14,37 +16,8 @@ export function dropToNode(
   return {
     ...prevState,
     node: pipe(
-      removeNode(sourceNode.id as number),
-      appendNode(targetNode.id as number, sourceNode)
+      removeNode(sourceNode.id),
+      appendNode(targetNode.id, sourceNode)
     )(prevState.node),
   };
-}
-
-/**
- * ドラッグ中のノードを切り離す
- */
-const removeNode =
-  (childNodeId: number) =>
-  (node: TreeView.Node): TreeView.Node => {
-    return {
-      ...node,
-      children: node.children
-        .filter((childNode) => childNode.id !== childNodeId)
-        .map(removeNode(childNodeId)),
-    };
-  };
-
-/**
- * ターゲット配下にノードを追加
- */
-const appendNode =
-  (parentNodeId: number, newNode: TreeView.Node) =>
-  (node: TreeView.Node): TreeView.Node => {
-    const newChildren = node.children.map(appendNode(parentNodeId, newNode));
-
-    return {
-      ...node,
-      children:
-        node.id === parentNodeId ? [...newChildren, newNode] : newChildren,
-    };
-  };
+};
