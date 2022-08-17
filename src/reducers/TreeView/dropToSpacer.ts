@@ -1,20 +1,33 @@
-export function dropToSpacer(
+import { replaceNodes } from "../../utils/replaceNodes";
+
+export const dropToSpacer = (
   prevState: TreeView.State,
   payload: TreeView.Action.DropToSpacer["payload"]
-): TreeView.State {
+): TreeView.State => {
   if (!isNonNullableState(prevState)) return prevState;
 
-  const { sourceParentNode } = prevState;
-  const { targetParentNode } = payload;
+  const { sourceNode, sourceParentNode } = prevState;
+  const { targetIndex, targetParentNode } = payload;
 
   // MARK: 親ノードが同じ場合
   if (sourceParentNode.id === targetParentNode.id) {
-    return replaceNodes(prevState, payload);
+    const sourceIndex = sourceParentNode.children.findIndex(
+      (x) => x.id === sourceNode.id
+    );
+
+    return {
+      ...prevState,
+      node: replaceNodes({
+        parentNodeId: targetParentNode.id,
+        sourceIndex: sourceIndex,
+        targetIndex,
+      })(prevState.node),
+    };
   }
 
   // MARK: 親ノードが異なる場合
   return insertNode(prevState, payload);
-}
+};
 
 /**
  * ステートのNullガード
@@ -23,25 +36,6 @@ function isNonNullableState(
   state: TreeView.State
 ): state is NonNullableObj<TreeView.State> {
   return Object.values(state).every(Boolean);
-}
-
-/**
- * ノードを入れ替える
- */
-function replaceNodes(
-  prevState: NonNullableObj<TreeView.State>,
-  payload: TreeView.Action.DropToSpacer["payload"]
-): TreeView.State {
-  const { sourceNode, sourceParentNode } = prevState;
-  const { targetIndex, targetParentNode } = payload;
-
-  const sourceIndex = sourceParentNode.children.findIndex(
-    (x) => x.id === sourceNode.id
-  );
-
-  replaceArrayElements(targetParentNode.children, sourceIndex, targetIndex);
-
-  return { ...prevState };
 }
 
 /**
@@ -63,21 +57,4 @@ function insertNode(
   );
 
   return { ...prevState };
-}
-
-/**
- * 配列の要素を入れ替える
- */
-function replaceArrayElements<T>(
-  array: T[],
-  sourceIndex: number,
-  targetIndex: number
-): void {
-  if (targetIndex <= sourceIndex) {
-    array.splice(targetIndex, 0, array[sourceIndex]);
-    array.splice(sourceIndex + 1, 1);
-  } else {
-    array.splice(targetIndex, 0, array[sourceIndex]);
-    array.splice(sourceIndex, 1);
-  }
 }
