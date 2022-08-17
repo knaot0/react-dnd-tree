@@ -1,5 +1,5 @@
 {
-  "name": "react-dnd-tree",
+  "name": "@knaot0/react-dnd-tree",
   "private": false,
   "version": "0.2.2",
   "type": "module",
