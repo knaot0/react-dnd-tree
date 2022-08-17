@@ -1,9 +1,3 @@
-/**
- * 必要条件
- * 1. 順番を入れ替えられる
- * 2. 枝を開閉できる
- */
-
 import { TreeView } from "./components/TreeView";
 
 const node: TreeView.Node = {
