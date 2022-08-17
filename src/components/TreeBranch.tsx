@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTreeViewDispatchContext } from "../hooks/useTreeViewDispatchContext";
 import { TreeItem } from "./TreeItem";
+import { TreeSpacer } from "./TreeSpacer";
 
 type TreeBranchProps = {
   node: TreeView.Node;
@@ -97,6 +98,7 @@ export const TreeBranch: React.VFC<TreeBranchProps> = ({
             parentNode={node}
           />
         ))}
+        <TreeSpacer index={node.children.length} parentNode={node} />
       </div>
     </details>
   );
