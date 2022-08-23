@@ -4,6 +4,7 @@ import { dragStart } from "./dragStart";
 import { dragEnd } from "./dragEnd";
 import { dropToNode } from "./dropToNode";
 import { dropToSpacer } from "./dropToSpacer";
+import { addNode } from "./addNode";
 
 export const treeViewReducer: Reducer<Types.State, Types.Actions> = (
   prevState,
@@ -20,5 +21,7 @@ export const treeViewReducer: Reducer<Types.State, Types.Actions> = (
       return dropToNode(prevState, action.payload);
     case "DROP_TO_SPACER":
       return dropToSpacer(prevState, action.payload);
+    case "ADD_NODE":
+      return addNode(prevState, action.payload);
   }
 };

@@ -16,7 +16,8 @@ export type Actions =
   | Action.DragStart
   | Action.DragEnd
   | Action.DropToNode
-  | Action.DropToSpacer;
+  | Action.DropToSpacer
+  | Action.AddNode;
 
 export namespace Action {
   export type DragStart = {
@@ -43,6 +44,13 @@ export namespace Action {
     payload: {
       targetIndex: number;
       targetParentNode: TreeNode;
+    };
+  };
+
+  export type AddNode = {
+    type: "ADD_NODE";
+    payload: {
+      targetNode: TreeNode;
     };
   };
 }
