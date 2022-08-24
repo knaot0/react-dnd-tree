@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useTreeViewDispatchContext } from "../hooks/useTreeViewDispatchContext";
 import { TreeItem } from "./TreeItem";
 import { TreeSpacer } from "./TreeSpacer";
+import { Typography, IconButton } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 
 type TreeBranchProps = {
   node: Types.TreeNode;
@@ -75,6 +77,17 @@ export const TreeBranch: React.FC<TreeBranchProps> = ({
     });
   };
 
+  const handleAdd = (e: { stopPropagation: () => void }) => {
+    e.stopPropagation();
+
+    dispatch({
+      type: "ADD_NODE",
+      payload: { targetNode: node },
+    });
+
+    setIsOpen(true);
+  };
+
   return (
     <details
       draggable
@@ -87,7 +100,21 @@ export const TreeBranch: React.FC<TreeBranchProps> = ({
       onDragLeave={handleDragLeave}
       style={{ background: isDragOver ? "lightblue" : "none" }}
     >
-      <summary style={{ cursor: "pointer" }}>🗂 {node.name}</summary>
+      <summary
+        style={{
+          cursor: "pointer",
+          color: "black",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <>
+          <Typography variant="h6">🗂 {node.name}</Typography>
+          <IconButton sx={{ ml: 1 }} onClick={handleAdd}>
+            <AddIcon />
+          </IconButton>
+        </>
+      </summary>
 
       <div style={{ paddingLeft: 20 }}>
         {node.children.map((childNode, index) => (

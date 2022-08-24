@@ -1,6 +1,8 @@
 import type * as Types from "../reducers/TreeView/types";
 import { useState } from "react";
 import { useTreeViewDispatchContext } from "../hooks/useTreeViewDispatchContext";
+import { Typography, IconButton } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 
 type TreeNodeProps = {
   node: Types.TreeNode;
@@ -59,6 +61,15 @@ export const TreeNode: React.FC<TreeNodeProps> = ({ node, parentNode }) => {
     });
   };
 
+  const handleAdd = (e: { stopPropagation: () => void }) => {
+    e.stopPropagation();
+
+    dispatch({
+      type: "ADD_NODE",
+      payload: { targetNode: node },
+    });
+  };
+
   return (
     <div
       draggable
@@ -70,10 +81,18 @@ export const TreeNode: React.FC<TreeNodeProps> = ({ node, parentNode }) => {
       onDragStart={handleDragStart}
       style={{
         cursor: "pointer",
+        color: "black",
         background: isDragOver ? "lightgreen" : "none",
+        display: "flex",
+        alignItems: "center",
       }}
     >
-      📄 {node.name}
+      <>
+        <Typography variant="h6">📄 {node.name}</Typography>
+        <IconButton sx={{ ml: 1 }} onClick={handleAdd}>
+          <AddIcon />
+        </IconButton>
+      </>
     </div>
   );
 };
