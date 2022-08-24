@@ -1,3 +1,4 @@
+import { insertNode } from "../../utils/insertNode";
 import type * as Types from "./types";
 
 export function addNode(
@@ -15,8 +16,12 @@ export function addNode(
     children: [],
   };
 
-  // NOTE: ターゲット配下の特定のインデックスにノードを追加
-  targetNode.children.splice(0, 0, newNode);
-
-  return { ...prevState, sourceNode: null, sourceParentNode: null };
+  return {
+    ...prevState,
+    node: insertNode({
+      parentNodeId: targetNode.id,
+      sourceNode: newNode,
+      targetIndex: 0,
+    })(prevState.node),
+  };
 }
