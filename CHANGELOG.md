@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/knaot0/react-dnd/compare/v0.2.3...v0.3.0) (2022-08-29)
+
+
+### Features
+
+* TreeNodeの追加ができるように ([#5](https://github.com/knaot0/react-dnd/issues/5)) ([bbb869f](https://github.com/knaot0/react-dnd/commit/bbb869fe8d87866af0f3edd9f7470e127b06aedd))
+
+
+
 ## 0.2.3 (2022-08-17)
 
 
